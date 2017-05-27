@@ -78,30 +78,31 @@ func httpGet() {
 	header, err := bmob.DoRestReq(appConfig, bmob.RestRequest{
 		BaseReq: bmob.BaseReq{
 			Method: "POST",
-			Path:   bmob.ApiRestURL("DailySentence"),
-			//Path:   bmob.ApiRestURL("DailySentenceNet") + "/",
+			//Path:   bmob.ApiRestURL("DailySentence"),
+			Path:  bmob.ApiRestURL("DailySentenceNet") + "/",
 			Token: ""},
 		Type: "application/json",
 		Body: data}, &sentence)
 	if err != nil {
 		log.Panic(err)
+		log.Println("error data:", date)
 	} else {
 		log.Println(header)
-		log.Println(err)
+		log.Println("success data:", date)
 	}
 }
 
 func main() {
-	next := time.Now().Add(time.Second * 5)
-	//next := time.Now().Add(time.Hour * 10)
+	//next := time.Now().Add(time.Second * 5)
+	next := time.Now().Add(time.Hour * 9)
 	fmt.Println(next)
 	next = time.Date(next.Year(), next.Month(), next.Day(), 0, 0, 0, 0, next.Location())
 	fmt.Println(next)
 	timer := time.NewTimer(next.Sub(time.Now()))
 	<-timer.C
 	httpGet()
-	ticker := time.NewTicker(5 * time.Second)
-	//timer = time.NewTicker(24 * time.Hour)
+	//ticker := time.NewTicker(5 * time.Second)
+	timer = time.NewTicker(24 * time.Hour)
 	for {
 		select {
 		case <-ticker.C:
