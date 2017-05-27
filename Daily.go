@@ -102,7 +102,7 @@ func main() {
 	<-timer.C
 	httpGet()
 	//ticker := time.NewTicker(5 * time.Second)
-	timer = time.NewTicker(24 * time.Hour)
+	ticker := time.NewTicker(24 * time.Hour)
 	for {
 		select {
 		case <-ticker.C:
