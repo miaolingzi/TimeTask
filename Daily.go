@@ -100,11 +100,11 @@ func main() {
 	timer := time.NewTimer(next.Sub(time.Now()))
 	<-timer.C
 	httpGet()
-	timer = time.NewTicker(5 * time.Second)
+	ticker := time.NewTicker(5 * time.Second)
 	//timer = time.NewTicker(24 * time.Hour)
 	for {
 		select {
-		case <-timer.C:
+		case <-ticker.C:
 			go httpGet()
 		}
 	}
