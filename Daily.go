@@ -96,7 +96,7 @@ func main() {
 	//next := time.Now().Add(time.Second * 5)
 	next := time.Now().Add(time.Hour * 9)
 	fmt.Println(next)
-	next = time.Date(next.Year(), next.Month(), next.Day(), 0, 0, 0, 0, next.Location())
+	next = time.Date(next.Year(), next.Month(), next.Day(), 1, 0, 0, 0, next.Location())
 	fmt.Println(next)
 	timer := time.NewTimer(next.Sub(time.Now()))
 	<-timer.C
